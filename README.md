@@ -1,98 +1,141 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📱 Custom QR Code Generator - React Native
 
-# Getting Started
+This project is a lightweight **React Native** app designed to test and demonstrate **custom QR code generation** using the same library as used in the Medfilo application. It includes customization like color matching and adding logos to the center of the QR code.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## 🚀 Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- Generate scannable QR codes.
+- Customize QR code color to match app branding.
+- Optionally embed a logo/image in the center of the QR code.
+- Built with `react-native-qrcode-svg`.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
-npm start
+## 🧱 Prerequisites
 
-# OR using Yarn
-yarn start
+Make sure the following tools are installed:
+
+- [Node.js](https://nodejs.org/) (v16 or above recommended)
+- [React Native CLI](https://reactnative.dev/docs/environment-setup) (`npx react-native`)
+- [Android Studio](https://developer.android.com/studio) with Emulator setup
+- Xcode (for iOS testing on Mac - optional)
+- `yarn` or `npm`
+
+---
+
+## 📦 Installation
+
+1. **Clone the repository (or navigate to QRCodeTest folder):**
+   ```bash
+   git clone https://github.com/mgulati3/QrCode-color.git
+   cd QRCodeTest
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   yarn install
+   # OR
+   npm install
+   ```
+
+3. **Install SVG support (used by QR Code library):**
+   ```bash
+   yarn add react-native-svg
+   yarn add react-native-qrcode-svg
+   ```
+
+4. **(Android only) Rebuild native modules:**
+   ```bash
+   cd android
+   ./gradlew clean
+   cd ..
+   ```
+
+---
+
+## ▶️ Running the App
+
+Start the Metro bundler:
+
+```bash
+npx react-native start
 ```
 
-## Step 2: Build and run your app
+In a separate terminal, run the app on an Android emulator:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+npx react-native run-android
 ```
 
-### iOS
+> ℹ️ You can also use `run-ios` if you're on macOS and Xcode is configured.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+---
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+## 🎨 Customize Your QR Code
 
-```sh
-bundle install
+You can find the QR code logic inside `App.tsx`. Here's how to modify it:
+
+### Change QR Content:
+Update the `value` field with any address:
+```tsx
+value="https://medfilo.app/verify/101"
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
+### Change QR Color:
+Update the `color` field:
+```tsx
+color="#28C76F" // Medfilo Green
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Add a Logo:
+Make sure you have a local logo image (e.g., `assets/logo.png`), then:
 
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+```tsx
+logo={require('./assets/logo.png')}
+logoSize={50}
+logoBackgroundColor="transparent"
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+---
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## ✅ Output Preview
 
-## Step 3: Modify your app
+- A centered, scannable QR code in the app.
+- Custom color matching the Medfilo theme.
+- Optional logo support.
 
-Now that you have successfully run the app, let's make changes!
+---
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## 📸 Sample Screenshot
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+![QR Code Example](./docs/screenshot.png)
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+---
 
-## Congratulations! :tada:
+## 🛠️ Troubleshooting
 
-You've successfully run and modified your React Native App. :partying_face:
+- If `react-native-svg` error occurs:
+  ```bash
+  cd android && ./gradlew clean && cd ..
+  npx react-native run-android
+  ```
 
-### Now what?
+- If Metro bundler fails, restart with:
+  ```bash
+  npx react-native start --reset-cache
+  ```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+---
 
-# Troubleshooting
+## 📄 License
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+This project is for **internal testing** and demonstration only.
 
-# Learn More
+---
 
-To learn more about React Native, take a look at the following resources:
+## 🧑‍💻 Maintainer
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
-# QrCode-color
+Manan Gulati  
+Email: mgulati3@asu.edu
