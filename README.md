@@ -42,8 +42,7 @@ Make sure the following tools are installed:
 
 3. **Install SVG support (used by QR Code library):**
    ```bash
-   yarn add react-native-svg
-   yarn add react-native-qrcode-svg
+   npm install react-native-qrcode-svg
    ```
 
 4. **(Android only) Rebuild native modules:**
